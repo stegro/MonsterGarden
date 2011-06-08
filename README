@@ -1,0 +1,14 @@
+Monster Garden - - a small open source barcode scanning game
+
+
+1) How to add a new static monster
+
+The MoMoMonster class represents all monsters which are not animated. It reads available data from the file moMoMonsters.txt .
+A monster has
+	- a picture:	* black&white, if possible a drawing, I do not accept color.
+			* maximum dimensions 640x480 pixel
+			* Licensed under Creative Commons CC BY-NC or CC BY-NC-SA or CC BY-SA
+	- a name
+
+You can send the couple to me netscraper@web.de and I will include it.
+
