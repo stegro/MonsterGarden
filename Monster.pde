@@ -39,7 +39,7 @@ class AbstractMonster
  void setLevels() {
    //Laplace distribution
    double my = 0; //center
-   double b = 1.4; //scaling
+   double b = 1.3; //scaling
    level = (int)(my - b * log(1.0 - 2.0 * abs(random(1)-0.5)));
  }
  

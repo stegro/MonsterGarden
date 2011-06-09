@@ -36,7 +36,7 @@ String saveFile = "monsterBook.txt";
 int HOVER_GRAY = 100;
 
 int mode;
-int HUNT = 1;
+int CATCH = 1;
 int NOTHING = 0;
 int GARDEN = 2;
 
@@ -84,8 +84,8 @@ void setup() {
   Button b;
   
   
-  b = controlP5.addButton("hunt",0,5,5,100,14);
-  b.setLabel("hunt a creature");
+  b = controlP5.addButton("catch",0,5,5,100,14);
+  b.setLabel("catch a creature");
   b.setColorBackground(color(0,0,0));
   b.setColorForeground(color(HOVER_GRAY,HOVER_GRAY,HOVER_GRAY));
   b.setColorActive(color(255,255,255));
@@ -97,7 +97,6 @@ void setup() {
   b.setColorActive(color(255,255,255));
   
   previous = controlP5.addButton("previous",0,20,35,49,14);
-  
   previous.setLabel("<");
   previous.setColorBackground(color(0,0,0));
   previous.setColorForeground(color(HOVER_GRAY,HOVER_GRAY,HOVER_GRAY));
@@ -142,17 +141,17 @@ void setup() {
 
 void controlEvent(ControlEvent theEvent) 
 {
-  println(theEvent.controller().name()+" = "+theEvent.value());  
+//  println(theEvent.controller().name()+" = "+theEvent.value());  
 
-  if(!theEvent.controller().name().equals("hunt")){
+  if(!theEvent.controller().name().equals("catch")){
     if(os.equals("linux"))
       cam.pause();
     else
       video.stop();
   }
-  if(theEvent.controller().name().equals("hunt"))
+  if(theEvent.controller().name().equals("catch"))
   {
-    mode = HUNT;
+    mode = CATCH;
     if(os.equals("linux")) {
       if(!cam.isPlaying())
         cam.play(); 
@@ -200,8 +199,6 @@ void controlEvent(ControlEvent theEvent)
         byte[] rawBytes = result.getRawBytes();
         BarcodeFormat format = result.getBarcodeFormat();
         ResultPoint[] points = result.getResultPoints();
-  
-        println("Content is: '" + text+"'");
         
         long ean = Long.parseLong(text);
         println("ean is "+ ean);
@@ -283,7 +280,7 @@ void updateGarden() {
 
 void draw() {
   background(255);
-  if(mode == HUNT)
+  if(mode == CATCH)
   {
     set(0,0,cam);
     filter(GRAY);
