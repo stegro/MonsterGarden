@@ -45,18 +45,16 @@ class AbstractMonster
    level = (int)(my - b * log(1.0 - 2.0 * abs(random(1)-0.5)));
  }
  
- void displayData() {
-  PFont f;
-  f = loadFont("FreeSerif-48.vlw");  
+ void displayData(PFont font) {
   stroke(0);
   fill(255,255,255,70);
   rect(0.5*(width-400), height-82, 400, 80);
   //specify color
   fill(0);
   textAlign(CENTER);
-  textFont(f,36);
+  textFont(font,36);
   text(name, width*0.5, height-50);   
-  textFont(f,18);
+  textFont(font,18);
   text("Level " + level, width*0.5, height-30);
   text("First sighted by " + author, width*0.5, height-8);
   }

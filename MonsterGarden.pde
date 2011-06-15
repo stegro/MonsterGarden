@@ -58,6 +58,9 @@ Capture video;
 ArrayList monsterList;
 int gardenIterator;
 AbstractMonster gardenExemplum;
+PFont font;
+
+
 
 void setup() {
   size(640,480);
@@ -65,10 +68,13 @@ void setup() {
   os = System.getProperty("os.name").toLowerCase();
   println("Your operating system is "+os);
   
+  font = loadFont("FreeSerif-48.vlw");  
+  
   monsterList = new ArrayList();
   loadGarden(monsterList);
   gardenIterator = 0;
   updateGarden();
+
 
   if(os.equals("linux")) {
     cam = new GSCapture(this, 640, 480);
@@ -152,6 +158,53 @@ void controlEvent(ControlEvent theEvent)
   if(theEvent.controller().name().equals("catch"))
   {
     mode = CATCH;
+    catchMonster();
+
+  }else if(theEvent.controller().name().equals("garden"))
+  {
+    previous.show();
+    next.show();
+    free.show();
+    knob.show();
+    mode = GARDEN;
+
+     
+        
+     gardenIterator = (gardenIterator + 1) % monsterList.size();
+     updateGarden();
+    
+  }else if(theEvent.controller().name().equals("previous")){
+    gardenIterator = (gardenIterator -1 + monsterList.size()) % monsterList.size();
+    updateGarden();
+  }else if(theEvent.controller().name().equals("next")){
+    gardenIterator = (gardenIterator + 1) % monsterList.size();
+    updateGarden();
+  }else if(theEvent.controller().name().equals("free")){
+    monsterList.remove(gardenIterator);
+    updateGarden();
+    saveGarden(monsterList);
+  }else if(theEvent.controller().name().equals("knob")){
+    
+  }else{
+    mode = NOTHING;
+  }
+  
+  if(mode != GARDEN){
+    next.hide();
+    previous.hide();
+    free.hide();
+    knob.hide();
+  }
+  
+}
+
+void keyPressed() {
+  if(mode == CATCH) {
+    catchMonster();
+  }  
+}
+
+void catchMonster() {
     if(os.equals("linux")) {
       if(!cam.isPlaying())
         cam.play(); 
@@ -220,46 +273,6 @@ void controlEvent(ControlEvent theEvent)
         println(ex.toString());
       }
       reader.reset();
-
-  }else if(theEvent.controller().name().equals("garden"))
-  {
-    previous.show();
-    next.show();
-    free.show();
-    knob.show();
-    mode = GARDEN;
-
-     
-        
-     gardenIterator = (gardenIterator + 1) % monsterList.size();
-     updateGarden();
-    
-  }else if(theEvent.controller().name().equals("previous")){
-    gardenIterator = (gardenIterator -1 + monsterList.size()) % monsterList.size();
-    updateGarden();
-  }else if(theEvent.controller().name().equals("next")){
-    gardenIterator = (gardenIterator + 1) % monsterList.size();
-    updateGarden();
-  }else if(theEvent.controller().name().equals("free")){
-    monsterList.remove(gardenIterator);
-    updateGarden();
-    saveGarden(monsterList);
-  }else if(theEvent.controller().name().equals("knob")){
-    
-  }else{
-    mode = NOTHING;
-  }
-  
-  if(mode != GARDEN){
-    next.hide();
-    previous.hide();
-    free.hide();
-    knob.hide();
-  }
-  
-}
-
-void keyPressed() {
   
 }
 
@@ -284,10 +297,21 @@ void draw() {
   {
     set(0,0,cam);
     filter(GRAY);
-  }else if(mode == GARDEN)
-  {
+
+    stroke(0);
+    fill(255,255,255,70);
+    rect(0.5*(width-400), height-82, 400, 80);
+    //specify color
+    fill(0);
+    textAlign(CENTER);
+    textFont(font,30);
+    text("Press any key to scan a barcode", width*0.5, height-50);  
+    textFont(font,18);
+    text("Try to get a picture with good contrast and resolution.", width*0.5, height-30);
+    
+  } else if(mode == GARDEN) {
     gardenExemplum.display();
-    gardenExemplum.displayData();
+    gardenExemplum.displayData(font);
   }
   
 }
