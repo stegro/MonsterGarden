@@ -204,7 +204,7 @@ void controlEvent(ControlEvent theEvent)
         println("ean is "+ ean);
         if(!gardenContains(monsterList, ean)) {  
           println("You found a new monster!");
-          AbstractMonster m = createMonster(ean);
+          AbstractMonster m = createMonster(ean, null);
           monsterList.add(m);
           updateGarden();
           saveGarden(monsterList);
@@ -298,7 +298,7 @@ void saveGarden(ArrayList list) {
   AbstractMonster m;
   while(it.hasNext()){
     m = (AbstractMonster)it.next();
-    output.println(m.ean);
+    output.println(m.ean + ";" + m.id);
   }
   output.flush(); // Write the remaining data
   output.close(); // Finish the file
@@ -310,8 +310,11 @@ void loadGarden(ArrayList list) {
   String[] lines = loadStrings(saveFile);
   String[] pieces;
   for(int i = 0; i < lines.length; i++) {
-    pieces = splitTokens(lines[i], "\t");
-    list.add(createMonster(Long.parseLong(pieces[0])));
+    pieces = splitTokens(lines[i], "\t;");
+    if(pieces.length == 2)
+      list.add(createMonster(Long.parseLong(pieces[0]), pieces[1]));
+    else
+      list.add(createMonster(Long.parseLong(pieces[0]), null));
   }
   }catch(Exception ex){
     println("Could not read " + saveFile +", "+ex.toString());
@@ -328,7 +331,7 @@ boolean gardenContains(ArrayList l, long ean) {
   
 }
 
-AbstractMonster createMonster(long ean) {
+AbstractMonster createMonster(long ean, String id) {
   randomSeed((int)ean);
 //  println("create Monster");
 //  println(ean);
@@ -336,7 +339,7 @@ AbstractMonster createMonster(long ean) {
   switch((int)random(100)) {
     case 0:
     default:
-      m = new MoMoMonster(ean);
+      m = new MoMoMonster(ean, id);
       break;
   }
     

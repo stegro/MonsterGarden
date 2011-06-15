@@ -21,14 +21,16 @@ class AbstractMonster
 {
  String name;
  String author;
+ String id;
  long ean;
  
  int level;
  
  
- AbstractMonster(long ean)
+ AbstractMonster(long ean, String id)
  {
    this.ean = ean;
+   this.id = id;
    setLevels();
  }
  

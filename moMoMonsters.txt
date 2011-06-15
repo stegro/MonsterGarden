@@ -1,11 +1,11 @@
-data/motomichi_chubby.jpg;	Chubby;	motomichi
-data/autumn_bliss-elliot.png;	Elliot;	autumn bliss
-data/autumn_bliss-three_little_birds.jpg;	Little Birds;	autumn bliss
-data/autumn_bliss-untitled2.png;	Smirking Willow;	autumn bliss
-data/autumn_bliss-untitled.jpg;	Hopkins in a Pot;	autumn bliss
-data/nathan_bowers-brain_slug.png;	Brain Slug;	Nathan Bowers
-data/nathan_bowers-doodle.png;	Keen-Eyed Adalwin;	Nathan Bowers
-data/nathan_bowers-headed_econ_monster.png;	Quite Geometric Brynjarr;	Nathan Bowers
-data/nathan_bowers-untitled.png;	The Greedy Gundhram;	Nathan Bowers
-data/laurie_pink-lop_rabbit.jpg;	Lop Rabbit;	Laurie Pink
-data/trevor_patt-untitled.gif;	Gisbert with the Big Chops;	Trevor Patt
+data/motomichi_chubby.jpg;		chubby;			Chubby;			motomichi
+data/autumn_bliss-elliot.png;		elliot;			Elliot;			autumn bliss
+data/autumn_bliss-three_little_birds.jpg;littlebirds;		Little Birds;		autumn bliss
+data/autumn_bliss-untitled2.png;	smirkingwillow;		Smirking Willow;	autumn bliss
+data/autumn_bliss-untitled.jpg;		hopkins;		Hopkins in a Pot;	autumn bliss
+data/nathan_bowers-brain_slug.png;	brain slug;		Brain Slug;		Nathan Bowers
+data/nathan_bowers-doodle.png;		adalwin;		Keen-Eyed Adalwin;	Nathan Bowers
+data/nathan_bowers-headed_econ_monster.png;brynjarr;		Quite Geometric Brynjarr;	Nathan Bowers
+data/nathan_bowers-untitled.png;	greedyGrundhram;	The Greedy Gundhram;	Nathan Bowers
+data/laurie_pink-lop_rabbit.jpg;	loprabbit;		Lop Rabbit;		Laurie Pink
+data/trevor_patt-untitled.gif;		gisbertBigChops;	Gisbert with the Big Chops;	Trevor Patt

@@ -22,9 +22,9 @@ class MoMoMonster extends AbstractMonster
   String moMoDatabase = "moMoMonsters.txt";
   PImage img;
   
- MoMoMonster(long ean)
+ MoMoMonster(long ean, String id)
  {
-   super(ean);
+   super(ean, id);
    randomSpeciesFromDatabase();
  }
   
@@ -36,19 +36,32 @@ class MoMoMonster extends AbstractMonster
     try{
       String[] lines = loadStrings(moMoDatabase);
       int choice = int(random(0, lines.length));
+
       // Line Format:
-      // <imagefile>;<Monster trivial name>;<author>
+      // <imagefile>;<id>;<Monster trivial name>;<author>
+
+      
+      if(this.id != null)
+        for(int i = 0; i < lines.length; i++)
+          if(this.id.equals(splitTokens(lines[i], "\t;")[1])) {
+            choice = i;
+            break;
+          }
+      
       String[] pieces = splitTokens(lines[choice], "\t;");
       
       this.img = loadImage(pieces[0]);
-      this.name = pieces[1];
-      this.author = pieces[2];
+      this.id = pieces[1];
+      this.name = pieces[2];
+      this.author = pieces[3];
       
       
     }catch(Exception ex){
       println("Could not read " + moMoDatabase +", "+ex.toString());
     }
   }
+  
+  
 
 
 }
